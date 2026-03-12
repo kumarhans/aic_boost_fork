@@ -133,6 +133,11 @@ export DBX_CONTAINER_MANAGER=docker
 docker pull ghcr.io/intrinsic-dev/aic/aic_eval:latest
 # If you do *not* have an NVIDIA GPU, remove the --nvidia flag for GPU support
 distrobox create -r --nvidia -i ghcr.io/intrinsic-dev/aic/aic_eval:latest aic_eval
+
+# I had to add this (hans)
+export __GLX_VENDOR_LIBRARY_NAME=nvidia
+
+# Enter container
 distrobox enter -r aic_eval
 
 # Inside the container, start the environment
