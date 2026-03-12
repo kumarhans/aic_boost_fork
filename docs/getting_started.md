@@ -131,7 +131,7 @@ export DBX_CONTAINER_MANAGER=docker
 
 # Create and enter the eval container
 #docker pull ghcr.io/intrinsic-dev/aic/aic_eval:latest
-docker build -f docker/aic_eval/Dockerfile -t aic_eval:local .
+DOCKER_BUILDKIT=1 docker build -f docker/aic_eval/Dockerfile -t aic_eval:local .
 
 # Remove the old distrobox container if it exists
 distrobox rm -r aic_eval --force
