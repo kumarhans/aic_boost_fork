@@ -130,12 +130,15 @@ pixi install
 export DBX_CONTAINER_MANAGER=docker
 
 # Create and enter the eval container
-docker pull ghcr.io/intrinsic-dev/aic/aic_eval:latest
-# If you do *not* have an NVIDIA GPU, remove the --nvidia flag for GPU support
-distrobox create -r --nvidia -i ghcr.io/intrinsic-dev/aic/aic_eval:latest aic_eval
+#docker pull ghcr.io/intrinsic-dev/aic/aic_eval:latest
+docker build -f docker/aic_eval/Dockerfile -t aic_eval:local .
 
-# I had to add this (hans)
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
+# Remove the old distrobox container if it exists
+distrobox rm -r aic_eval --force
+
+# Create and enter the eval container using your LOCAL image
+distrobox create -r --nvidia -i aic_eval:local aic_eval
+#distrobox create -r --nvidia -i ghcr.io/intrinsic-dev/aic/aic_eval:latest aic_eval
 
 # Enter container
 distrobox enter -r aic_eval
