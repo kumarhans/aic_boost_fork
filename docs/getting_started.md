@@ -129,6 +129,8 @@ pixi install
 # Indicate distrobox to use Docker as container manager
 export DBX_CONTAINER_MANAGER=docker
 
+export DBX_CONTAINER_MANAGER=docker
+
 # Create and enter the eval container
 #docker pull ghcr.io/intrinsic-dev/aic/aic_eval:latest
 DOCKER_BUILDKIT=1 docker build -f docker/aic_eval/Dockerfile -t aic_eval:local .
